@@ -22,7 +22,7 @@ import java.util.Random;
 import static android.accounts.AccountManager.KEY_PASSWORD;
 
 public class JavaConnection {
-    public static void registerUser(final Context context, final String email, final String password, final View loadingView) {
+    public static void loginUser(final Context context, final String email, final String password, final View loadingView) {
         loadingView.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(context); // this = context
       String  url = "https://reqres.in/api/login?delay=5";

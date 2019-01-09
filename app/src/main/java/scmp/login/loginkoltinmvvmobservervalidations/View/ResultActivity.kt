@@ -16,7 +16,9 @@ class ResultActivity:  AppCompatActivity() {
         var bundle :Bundle ?=intent.extras
         var token = bundle!!.getString("token") // 1
 
-        result!!.text = token
+        result!!.text = getString(R.string.token) + token
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
+
 
     }
 }

@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
         else if(!Utils.isValidPassword(password!!.text.toString()))
             setPasswordError()
          else {
-            JavaConnection.registerUser(this,"email!!.text.toString()", "password!!.text.toString()", loadingView)
+            JavaConnection.loginUser(this,"email!!.text.toString()", "password!!.text.toString()", loadingView)
         }
     }
 
