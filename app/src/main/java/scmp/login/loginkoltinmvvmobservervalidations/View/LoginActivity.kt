@@ -1,0 +1,55 @@
+package scmp.login.loginkoltinmvvmobservervalidations.View
+
+import android.databinding.DataBindingUtil
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
+import scmp.login.loginkoltinmvvmobservervalidations.R
+import scmp.login.loginkoltinmvvmobservervalidations.ViewModel.LoginViewInterface
+import scmp.login.loginkoltinmvvmobservervalidations.ViewModel.LoginViewModel
+import java.util.*
+
+class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
+    private var loginViewModel: LoginViewModel? = null
+    private var loadingView: View? = null
+    private var email: TextView? = null
+    private var password:TextView? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+        loadingView = findViewById(R.id.loading_view)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        loginViewModel!!.reset()
+    }
+
+    override fun update(o: Observable?, arg: Any?) {
+        o!!.addObserver(this)
+    }
+
+    override fun showProgress() {
+        loadingView!!.visibility = View.VISIBLE;
+    }
+
+    override fun hideProgress() {
+        loadingView!!.visibility = View.GONE
+    }
+
+    override fun setUsernameError() {
+        email!!.error = getString(R.string.error_invalid_email)
+        email!!.requestFocus()
+    }
+
+    override fun setPasswordError() {
+        password!!.error = getString(R.string.error_invalid_password)
+        password!!.requestFocus()
+    }
+    override fun navigateToHome() {
+    }
+
+}
