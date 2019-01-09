@@ -1,6 +1,8 @@
 package scmp.login.loginkoltinmvvmobservervalidations.Network;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +51,18 @@ public class JavaConnection {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         error.printStackTrace();
-                        Log.d("Error.Response", error.networkResponse.toString());
+                        Log.d("Error.Response", error.toString());
+                        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                        alertDialog.setTitle("");
+                        alertDialog.setMessage(error.toString());
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+
                         loadingView.setVisibility(View.GONE);
                     }
                 }
@@ -58,8 +71,8 @@ public class JavaConnection {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("email", "asdas@asdasd.com");
-                params.put("password", "itslnfo");
+                params.put("email", email);
+                params.put("password", password);
 
                 return params;
             }

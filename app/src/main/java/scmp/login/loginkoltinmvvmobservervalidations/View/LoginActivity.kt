@@ -1,8 +1,10 @@
 package scmp.login.loginkoltinmvvmobservervalidations.View
 
+import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import scmp.login.loginkoltinmvvmobservervalidations.Network.JavaConnection
 import scmp.login.loginkoltinmvvmobservervalidations.R
@@ -31,12 +33,13 @@ class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
     }
 
      fun validationAndLogin(v: View?) {
+         hideKeyboard(v)
         if(!Utils.isValidEmail(email!!.text.toString()))
             setUsernameError()
         else if(!Utils.isValidPassword(password!!.text.toString()))
             setPasswordError()
          else {
-            JavaConnection.registerUser(this,"heyehey@heyhey.com", "1234abcd", loadingView)
+            JavaConnection.registerUser(this,"email!!.text.toString()", "password!!.text.toString()", loadingView)
         }
     }
 
@@ -62,6 +65,11 @@ class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
         password!!.requestFocus()
     }
     override fun navigateToHome() {
+    }
+
+    fun hideKeyboard(view:View?) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
 }
