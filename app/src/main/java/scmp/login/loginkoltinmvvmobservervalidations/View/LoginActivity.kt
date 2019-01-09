@@ -1,12 +1,12 @@
 package scmp.login.loginkoltinmvvmobservervalidations.View
 
-import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import scmp.login.loginkoltinmvvmobservervalidations.R
+import scmp.login.loginkoltinmvvmobservervalidations.Validation.Utils
 import scmp.login.loginkoltinmvvmobservervalidations.ViewModel.LoginViewInterface
 import scmp.login.loginkoltinmvvmobservervalidations.ViewModel.LoginViewModel
 import java.util.*
@@ -21,11 +21,20 @@ class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         loadingView = findViewById(R.id.loading_view)
+        email = findViewById(R.id.email)
+        password = findViewById(R.id.password)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         loginViewModel!!.reset()
+    }
+
+     fun validationAndLogin(v: View?) {
+        if(!Utils.isValidEmail(email!!.text.toString()))
+            setUsernameError()
+        else if(!Utils.isValidPassword(password!!.text.toString()))
+            setPasswordError()
     }
 
     override fun update(o: Observable?, arg: Any?) {
