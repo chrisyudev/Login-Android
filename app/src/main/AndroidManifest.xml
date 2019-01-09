@@ -24,7 +24,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.ResultActivity"
-                  android:parentActivityName="View.LoginActivity">
+                  android:parentActivityName=".View.LoginActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".View.LoginActivity" />
+
         </activity>
     </application>
 
