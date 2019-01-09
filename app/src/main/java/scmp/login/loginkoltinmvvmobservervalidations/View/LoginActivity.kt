@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
 
     override fun onDestroy() {
         super.onDestroy()
-        loginViewModel!!.reset()
     }
 
      fun validationAndLogin(v: View?) {

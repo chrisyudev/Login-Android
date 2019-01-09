@@ -37,6 +37,7 @@ public class JavaConnection {
                             Log.d("Response",  token);
                             Intent intent = new Intent(context,ResultActivity.class);
                             intent.putExtra("token",token);
+
                             context.startActivity(intent);
 
                         } catch (JSONException e) {

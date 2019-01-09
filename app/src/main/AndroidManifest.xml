@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".View.ResultActivity">
+        <activity android:name=".View.ResultActivity"
+                  android:parentActivityName="View.LoginActivity">
         </activity>
     </application>
 
