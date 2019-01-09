@@ -3,8 +3,8 @@ package scmp.login.loginkoltinmvvmobservervalidations.View
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.TextView
+import scmp.login.loginkoltinmvvmobservervalidations.Network.JavaConnection
 import scmp.login.loginkoltinmvvmobservervalidations.R
 import scmp.login.loginkoltinmvvmobservervalidations.Validation.Utils
 import scmp.login.loginkoltinmvvmobservervalidations.ViewModel.LoginViewInterface
@@ -35,6 +35,9 @@ class LoginActivity : AppCompatActivity() , Observer, LoginViewInterface {
             setUsernameError()
         else if(!Utils.isValidPassword(password!!.text.toString()))
             setPasswordError()
+         else {
+            JavaConnection.registerUser(this,"heyehey@heyhey.com", "1234abcd", loadingView)
+        }
     }
 
     override fun update(o: Observable?, arg: Any?) {
